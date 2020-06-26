@@ -1,0 +1,30 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    display: block;
+    justify-content: center;
+    align-items: center;
+    background-color: darkgreen;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.container {
+    background-color: white;
+    padding: 10px;
+    border-radius: 5px;
+    width: 500px;
+}
+
+.input {
+    display: block;
+}
+
+.correct {
+    color: green;
+}
+
+.incorrect {
+    color: red;
+}
