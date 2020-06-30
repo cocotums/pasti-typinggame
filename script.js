@@ -24,7 +24,7 @@ sentences = [{
     }
 ];
 
-let gamePlay = false;;
+let gamePlay;
 let time = 11;
 let currentScore = 0;
 let finalScore = 0;
@@ -40,9 +40,10 @@ function startGame() {
     displaySentence(sentences);
     //start countdown timer
     setInterval(countdown, 1000);
-    userInput.value = null
+    //check game status
+    setInterval(checkStatus, 50)
         //addEventListener to input textbox
-    userInput.addEventListener("change", checkMatch);
+    userInput.addEventListener("input", checkMatch())
 
 }
 
@@ -62,22 +63,34 @@ function countdown() {
         gamePlay = false;
         message.innerHTML = "time's up!"
     }
+    //display time
     timer.innerHTML = time
 }
 
-function checkMatch() {
+function game() {
+    if (checkWordMatch()) {
+        gamePlay = true;
+        time = 11;
+        displaySentence(sentences)
+        currentScore = 10
+        finalScore += currentScore
+    }
+    //display score
+    score.innerHTML = "Your score:" + finalScore
+}
+
+function checkWordMatch() {
     if (userInput.value === textDisplay.innerHTML) {
         message.innerHTML = "You got it!"
-        currentScore = time
-        finalScore += currentScore
-            //display score
-        score.innerHTML = finalScore
-        startGame()
-
         return true;
     } else {
-        message.innerHTML = "nuuu!"
         gamePlay = false;
         return false;
+    }
+}
+
+function checkStatus() {
+    if (gamePlay == false && time === 0) {
+        message.innerHTML = "You're done"
     }
 }
