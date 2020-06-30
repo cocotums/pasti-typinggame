@@ -111,11 +111,16 @@ button.addEventListener("click", function() {
     gamePlay = true;
     userInput.innerHTML = "";
     messageDisplay.innerHTML = "";
-    timerDisplay.innerHTML = 0
+    timerDisplay.innerHTML = 0;
+    startGame();
 })
-if (!gamePlay) {
-    displaySentence(sentences)
-    setInterval(countdown, 1000);
+
+function startGame() {
+    console.log("GAME START");
+    if (gamePlay) {
+        displaySentence(sentences)
+        setInterval(countdown, 1000);
+    }
 }
 
 function displaySentence() {
@@ -147,6 +152,8 @@ function checkWordMatch() {
         scoreDisplay.innerHTML = score;
         displaySentence(sentences);
         userInput.value = "";
+        time = 11;
+        setTimeout(1000, countdown);
     } else {
         if (lives > 0) {
             lives--;
