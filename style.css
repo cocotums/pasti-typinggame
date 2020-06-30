@@ -6,21 +6,41 @@ body {
     text-align: center;
     min-height: 100vh;
     margin: 0;
-    background-color: white;
+    background-color: #E3B5A4;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
+.btn {
+    margin-top: 20px;
+    background-color: #C5EFCB;
+    font-size: large;
+    width: 200px;
+}
+
 .container {
-    background-color: rgb(136, 57, 106);
-    padding: 10px;
-    border: 3px solid black;
+    display: block;
+    text-align: left;
+    background-color: #C5EFCB;
+    padding: 20px;
+    margin: 40px auto;
+    border: 3px solid #5A716A;
     border-radius: 5px;
-    width: 500px;
     max-width: 90%;
 }
 
+.message-text {
+    padding: 15px;
+    font-size: large;
+}
+
+.input {
+    margin-left: 15px;
+    width: 95%;
+    height: 100px;
+}
+
 .timer {
-    top: 2 rem;
+    margin-top: 3rem;
     font-size: 3rem;
     font-weight: bold;
 }

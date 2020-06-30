@@ -1,7 +1,9 @@
 //DOMs
 let textDisplay = document.getElementById("textDisplay");
 let userInputDisplay = document.getElementById("userInput");
-let button = document.getElementById("button");
+let buttonWords = document.getElementById("button1");
+let buttonSentences = document.getElementById("button2");
+let buttonParagraphs = document.getElementById("button3");
 let messageDisplay = document.getElementById("messageText");
 let scoreDisplay = document.getElementById("scoreDisplay");
 let timerDisplay = document.getElementById("timerDisplay");
@@ -165,8 +167,15 @@ let score = 0;
 let time = 11;
 let lives = 3;
 
-//     //click on button to start game
-button.addEventListener("click", function() {
+//different buttons
+buttonSentences.addEventListener("click", function() {
+    console.log(buttonSentences.innerHTML)
+})
+buttonParagraphs.addEventListener("click", function() {
+        console.log(buttonParagraphs.innerHTML)
+    })
+    //     //click on button to start game
+buttonWords.addEventListener("click", function() {
     gamePlay = true;
     userInput.innerHTML = "";
     messageDisplay.innerHTML = "";
@@ -209,7 +218,7 @@ function checkWordMatch() {
     if (userInput.value === textDisplay.innerHTML) {
         messageDisplay.innerHTML = "You got it!"
         score++
-        scoreDisplay.innerHTML = score;
+        scoreDisplay.innerHTML = "Your score is: " + score;
         displaySentence();
         userInput.value = "";
         time = 11;
@@ -227,7 +236,7 @@ function checkWordMatch() {
 
 
 //create new buttons in html
-//commit
+//commit--done
 //add eventlisteners that will console.log the text on the button
 //commit
 //create a global gameArray variable to _refer to_ the selected array
