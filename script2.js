@@ -9,8 +9,8 @@ let scoreDisplay = document.getElementById("scoreDisplay");
 let timerDisplay = document.getElementById("timerDisplay");
 let timeMsgDisplay = document.getElementById("timeMsgDisplay")
 let livesDisplay = document.getElementById("livesDisplay")
-
-//arrays
+    // let heart = document.querySelector(".heart")
+    //data
 let sentences = ["Andy loved to sleep on a bed of nails.",
     "She was sad to hear that fireflies are facing extinction due to artificial light, habitat loss, and pesticides.",
     "You bite up because of your lower jaw.",
@@ -161,42 +161,62 @@ let paragraphs = [
 
     "If you can imagine a furry humanoid seven feet tall, with the face of an intelligent gorilla and the braincase of a man, you'll have a rough idea of what they looked like -- except for their teeth. The canines would have fitted better in the face of a tiger, and showed at the corners of their wide, thin-lipped mouths, giving them an expression of ferocity."
 ];
-
+let inputArray = []
+let levelTime = {
+    words: 6,
+    sentences: 16,
+    paragraphs: 31
+}
+let gamePlayTime;
+let gameArray = []
 let gamePlay = false;
 let score = 0;
-let time = 11;
+let time;
 let lives = 3;
 
 //different buttons
 buttonSentences.addEventListener("click", function() {
-    console.log(buttonSentences.innerHTML)
+
+    gamePlay = true;
+    gameArray = sentences;
+    gamePlayTime = levelTime.sentences;
+    time = gamePlayTime;
+    startGame();
 })
 buttonParagraphs.addEventListener("click", function() {
-        console.log(buttonParagraphs.innerHTML)
+        gamePlay = true;
+        gameArray = paragraphs;
+        gamePlayTime = levelTime.paragraphs;
+        time = gamePlayTime;
+        startGame();
     })
     //     //click on button to start game
 buttonWords.addEventListener("click", function() {
     gamePlay = true;
-    userInput.innerHTML = "";
-    messageDisplay.innerHTML = "";
-    timerDisplay.innerHTML = 0;
+    gameArray = words;
+    gamePlayTime = levelTime.words;
+    time = gamePlayTime;
     startGame();
 })
 
 // make this function take an argument that sets the array to use
 function startGame() {
     console.log("GAME START");
-    if (gamePlay) {
-        displaySentence(sentences)
-        setInterval(countdown, 1000);
-    }
+
+    userInputDisplay.innerHTML = "";
+    userInputDisplay.focus();
+    messageDisplay.innerHTML = "";
+    timerDisplay.innerHTML = 0;
+    displaySentence()
+    setInterval(countdown, 1000);
+
 }
 
 function displaySentence() {
     //generate random sentence from array
-    let randomIndex = Math.floor(Math.random() * sentences.length)
+    let randomIndex = Math.floor(Math.random() * gameArray.length)
         //display selected sentence
-    textDisplay.innerHTML = sentences[randomIndex];
+    textDisplay.innerHTML = gameArray[randomIndex];
     console.log(textDisplay.innerHTML)
 }
 
@@ -211,25 +231,35 @@ function countdown() {
     timerDisplay.innerHTML = time
 }
 
+// let i = 0;
+// while (i < 3) {
+//     let heart = document.createElement("span")
+//     heart.innerHTML = "❤️";
+//     livesDisplay.appendChild(heart)
+//     i++
+// }
 
 userInput.addEventListener("change", checkWordMatch)
 
 function checkWordMatch() {
-    if (userInput.value === textDisplay.innerHTML) {
-        messageDisplay.innerHTML = "You got it!"
-        score++
-        scoreDisplay.innerHTML = "Your score is: " + score;
-        displaySentence();
-        userInput.value = "";
-        time = 11;
-        setTimeout(1000, countdown);
-    } else {
-        if (lives > 0) {
-            lives--;
-            livesDisplay.innerHTML = lives;
-            messageDisplay.innerHTML = "nuuuu!";
+    if (gamePlay) {
+        if (userInput.value === textDisplay.innerHTML) {
+            messageDisplay.innerHTML = "You got it!"
+            score++
+            scoreDisplay.innerHTML = "Your score is: " + score;
+            displaySentence();
+            userInput.value = "";
+            time = gamePlayTime;
+            setTimeout(1000, countdown);
         } else {
-            messageDisplay.innerHTML = "game over"
+            if (lives > 0) {
+                lives--;
+                livesDisplay.innerHTML = "lives: " + lives;
+                messageDisplay.innerHTML = "nuuuu!";
+            } else {
+                gamePlay = false;
+                messageDisplay.innerHTML = "game over"
+            }
         }
     }
 }
@@ -238,8 +268,20 @@ function checkWordMatch() {
 //create new buttons in html
 //commit--done
 //add eventlisteners that will console.log the text on the button
-//commit
+//commit--done
 //create a global gameArray variable to _refer to_ the selected array
 //update the eventListeners to _set the gameArray variable_
 // commit
 // update displaySentence _function_ to use gameArray internally instead
+//change the countdown timing
+
+
+
+//check for game over
+//time for levels
+//autofocus
+
+//furthers
+//lives change to hearts
+//display:none
+//<input name= "arrName[]"/>

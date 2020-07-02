@@ -7,7 +7,9 @@ body {
     min-height: 100vh;
     margin: 0;
     background-color: #E3B5A4;
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bold;
+    font-size: 20px;
 }
 
 .btn {
@@ -21,7 +23,7 @@ body {
     display: block;
     text-align: left;
     background-color: #C5EFCB;
-    padding: 20px;
+    padding: 40px;
     margin: 40px auto;
     border: 3px solid #5A716A;
     border-radius: 5px;
